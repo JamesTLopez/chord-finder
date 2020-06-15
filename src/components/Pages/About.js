@@ -8,7 +8,7 @@ export default class Home extends Component {
                 <Header/>
 
                 
-                    <div className="container">
+                    <div className="home-main-container">
                         <h1>About</h1>
                     </div>
                 

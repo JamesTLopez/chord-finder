@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from '../Layouts/Mainheader'
 import Keyboard from '../Keyboard/Keys'
+import '../../css/piano.css'
 
 
 export default function Piano() {
