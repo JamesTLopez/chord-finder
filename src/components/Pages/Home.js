@@ -11,7 +11,7 @@ export default class Home extends Component {
 
 
                 
-                <div className="container">
+                <div className="home-main-container">
                     <div className="grid font">
                         <a href="/links" className="Links"> 
                             <h1>Links</h1>
