@@ -1,8 +1,8 @@
 import React from 'react'
 import {Howl} from 'howler'
-import White from "../../images/Whitekey.png"
-import Black from "../../images/blackkey.png"
-import C from '../../audio/C.ogg'
+import White from "../images/Whitekey.png"
+import Black from "../images/blackkey.png"
+import C from '../audio/C.ogg'
 
 
 

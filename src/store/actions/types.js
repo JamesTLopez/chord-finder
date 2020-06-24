@@ -1,0 +1,1 @@
+export const GET_TONAL_STATE = 'GET_TONAL_STATE';

@@ -12,10 +12,16 @@ $label-color : white;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    border-color: red;
-    border-style: dashed;
+    align-items: center;
+    // border-color: red;
+    // border-style: dashed;
     
 }
+
+.Octive-controller{
+    
+}
+
 #Labels{
     color: $label-color;
 }

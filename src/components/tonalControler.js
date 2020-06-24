@@ -30,24 +30,20 @@ export default function tonalControler() {
                     </select>
                 </div>
                 <div className="Octive-controller">
-                    <label id="Labels"> Key:</label>
+                    <label id="Labels"> Octive:</label>
                     <select>
-                        <option value="">C</option>
-                        <option value="">C#/Db</option>
-                        <option value="">D</option>
-                        <option value="">D#/Eb</option>
-                        <option value="">F</option>
-                        <option value="">F#</option>
-                        <option value="">G</option>
-                        <option value="">G#/Ab</option>
-                        <option value="">A</option>
-                        <option value="">A#/Bb</option>
-                        <option value="">B</option>
+                        <option value="">1</option>
+                        <option value="">2</option>
+                        <option value="">3</option>
+                        <option value="">4</option>
+                        <option value="">5</option>
+                        <option value="">6</option>
+                        <option value="">7</option>
                     </select>
                 </div>
             </div>
             <div className="chord-display">
-                <h1>chord</h1>
+                <h1 className="">chord</h1>
             </div>
         </div>
     )
