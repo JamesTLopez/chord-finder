@@ -1,22 +1,13 @@
 /* PIANO PAGE CSS */
 
-  .piano-container{
+  .container{
     min-height: 100vh;
     display: flex;
     background-color:#393939;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
   }
   
-  .container{
-    flex:1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    
-  }
+
   .main-piano-container{
     background-color: #0070f3;
   }
@@ -24,7 +15,7 @@
   .playArea{
     display: inline-block;
     flex-direction: column;
-    align-items: center;
+    align-self: end;
   }
   
   .Keyboard{

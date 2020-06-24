@@ -1,4 +1,3 @@
-
 import React from 'react'
 import {Howl} from 'howler'
 import White from "../../images/Whitekey.png"
@@ -39,9 +38,6 @@ export default function Keys() {
     
     return (
         <div className="playArea">
-            <div className="Visualizer">
-                <h1>HELolool</h1>
-            </div>
             <div className="Keyboard">
                 <div className="keys">
                     <div className="whitekeys">

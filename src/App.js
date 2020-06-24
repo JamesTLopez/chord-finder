@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import {BrowserRouter as Router,Route,Switch} from 'react-router-dom';
-import Piano from './components/Pages/Piano'
+import Piano from './components/Piano'
 
 function App() {
   return (
