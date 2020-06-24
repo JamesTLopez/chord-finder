@@ -25,8 +25,6 @@ export default function Keys() {
     })
    
     
-
-    
     let playC = (e) => {
         
         const noteLength = 2000;

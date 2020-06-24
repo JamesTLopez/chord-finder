@@ -9,6 +9,14 @@
     align-items: center;
   }
   
+  .container{
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+  }
   .main-piano-container{
     background-color: #0070f3;
   }
