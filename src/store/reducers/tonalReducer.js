@@ -6,6 +6,7 @@ const initState = {
     octive:'2'
 };
 
+
 export default (state = initState, action) =>{
     switch(action.type){
         case GET_TONAL_STATE:

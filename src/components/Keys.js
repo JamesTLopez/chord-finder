@@ -3,13 +3,14 @@ import {Howl} from 'howler'
 import White from "../images/Whitekey.png"
 import Black from "../images/blackkey.png"
 import C from '../audio/C.ogg'
+import '../styles/keys.css'
 
 
 
 export default function Keys() {
 
-    const Notes = ['C','C#','Db','D','D#','Eb','E','F','F#','Gb','G','G#','Ab','A','A#','Bb','B'];
-    const Octives = [1,2,3,4,5,6,7];
+    // const Notes = ['C','C#','Db','D','D#','Eb','E','F','F#','Gb','G','G#','Ab','A','A#','Bb','B'];
+    // const Octives = [1,2,3,4,5,6,7];
 
     
     let SoundEngine = new Howl({
@@ -38,7 +39,7 @@ export default function Keys() {
     
     return (
         <div className="playArea">
-            <div className="Keyboard">
+            
                 <div className="keys">
                     <div className="whitekeys">
                         <div className="white-key">
@@ -170,7 +171,7 @@ export default function Keys() {
                     
                 </div>
                 
-            </div>
+            
         </div>
     )
 }

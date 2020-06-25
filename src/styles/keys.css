@@ -1,0 +1,148 @@
+.playArea {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Visualizer {
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+}
+
+.keys {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-item-align: center;
+      align-self: center;
+}
+
+.whitekeys {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.blackkeys {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  right: 13.6em;
+}
+
+.white-key {
+  z-index: 1;
+}
+
+.black-key {
+  z-index: 2;
+}
+
+.black-group-1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  position: relative;
+  right: 33.3em;
+}
+
+.black-key-g1-1 {
+  z-index: 2;
+  position: relative;
+}
+
+.black-key-g1-2 {
+  z-index: 2;
+  position: relative;
+  left: 1em;
+}
+
+.black-group-2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  position: relative;
+  right: 28.9em;
+}
+
+.black-group-3 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  position: relative;
+  right: 23.4em;
+}
+
+.black-group-4 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  position: relative;
+  right: 18.9em;
+}
+
+.black-group-5 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  position: relative;
+  right: 13.5em;
+}
+
+.black-group-6 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  position: relative;
+  right: 8.9em;
+}
+
+.black-key-g2-1 {
+  z-index: 2;
+  position: relative;
+}
+
+.black-key-g2-2 {
+  z-index: 2;
+  position: relative;
+  left: 1.2em;
+}
+
+.black-key-g2-3 {
+  z-index: 2;
+  position: relative;
+  left: 2.2em;
+}
+/*# sourceMappingURL=keys.css.map */

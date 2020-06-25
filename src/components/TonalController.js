@@ -4,30 +4,33 @@ import PropTypes from 'prop-types'
 import {GET_TONAL_STATE} from '../store/actions/types'
 import '../styles/tonalController.css'
 
-function TonalController(props) {
-    const [key,setKey] = useState(props.tonal.key);
-    const [chord,setChord] = useState(props.tonal.chord);
-    const [octive,setOctive] = useState(props.tonal.octive);
 
+function TonalController(props) {
+    const [key,setKey] = useState(props.keys);
+    const [chord,setChord] = useState(props.chord);
+    const [octive,setOctive] = useState(props.octive);
+    const stes = props.getTonalState();
     useEffect(()=>{
+        console.log(stes);
         console.log('Rendered: ' + key);
         console.log('Rendered: ' + chord);
         console.log('Rendered: ' + octive);
     })
 
     const handleKeyChange = (e) =>{
-        console.log('Key:' +e.target.value);
+        setKey(e.target.value);
     }
 
     const handleChordChange = (e) =>{
-        console.log('Chord: ' + e.target.value);
+        setChord(e.target.value);
     }
 
     const handleOctiveChange = (e) =>{
-        console.log('Octive: ' + e.target.value);
+        setOctive(e.target.value);
     }
 
     return (
+        
         <div className="tonal-controller">
             <div className="tonal-main-container">
                 <div className="Key-controller">
@@ -75,15 +78,19 @@ function TonalController(props) {
 }
 
 TonalController.propTypes = {
-    
+    getTonalState: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
-    tonal:state.tonalState
+    keys:state.tonalState.key,
+    chord:state.tonalState.chord,
+    octive:state.tonalState.octive
 })
 
-const mapDispatchToProps = (dispatch) => ({
-    getTonalControllerState: () => dispatch({type:GET_TONAL_STATE})
-})
+const mapDispatchToProps = dispatch => {
+    return {
+        getTonalState: () => dispatch({type:GET_TONAL_STATE})
+    }
+  }
 
 export default connect(mapStateToProps,mapDispatchToProps)(TonalController)

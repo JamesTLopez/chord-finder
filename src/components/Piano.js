@@ -1,7 +1,7 @@
 import React from 'react'
 import Visualizer  from './Visualizer'
 import Keyboard from './Keys'
-import ToneController from './TonalController'
+import TonalController from './TonalController'
 import '../styles/piano.css'
 
 
@@ -11,7 +11,7 @@ export default function Piano() {
             <header><h1>Chord Finder</h1></header>
             <Visualizer/>
             <Keyboard/>
-            <ToneController/>
+            <TonalController/>
         </div> 
     )
 }
