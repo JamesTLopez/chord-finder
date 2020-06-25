@@ -2,8 +2,8 @@ import {GET_TONAL_STATE} from '../actions/types'
 
 const initState = {
     key:'C',
-    Chord:'Minor',
-    Octive:'2'
+    chord:'Minor',
+    octive:'2'
 };
 
 export default (state = initState, action) =>{

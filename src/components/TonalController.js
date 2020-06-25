@@ -1,7 +1,21 @@
-import React from 'react'
+import React,{ useState, useEffect } from 'react'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import {GET_TONAL_STATE} from '../store/actions/types'
 import '../styles/tonalController.css'
 
-export default function tonalControler() {
+function TonalController(props) {
+    const [key,setKey] = useState(props.tonal.key);
+    const [chord,setChord] = useState(props.tonal.chord);
+    const [octive,setOctive] = useState(props.tonal.octive);
+
+    useEffect(()=>{
+        console.log('Rendered: ' + key);
+        console.log('Rendered: ' + chord);
+        console.log('Rendered: ' + octive);
+    })
+
+
     return (
         <div className="tonal-controller">
             <div className="tonal-main-container">
@@ -48,3 +62,17 @@ export default function tonalControler() {
         </div>
     )
 }
+
+TonalController.propTypes = {
+    
+}
+
+const mapStateToProps = (state) => ({
+    tonal:state.tonalState
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    getTonalControllerState: () => dispatch({type:GET_TONAL_STATE})
+})
+
+export default connect(mapStateToProps,mapDispatchToProps)(TonalController)

@@ -1,7 +1,7 @@
 import React from 'react'
 import Visualizer  from './Visualizer'
 import Keyboard from './Keys'
-import ToneController from './tonalControler'
+import ToneController from './TonalController'
 import '../styles/piano.css'
 
 
