@@ -15,44 +15,55 @@ function TonalController(props) {
         console.log('Rendered: ' + octive);
     })
 
+    const handleKeyChange = (e) =>{
+        console.log('Key:' +e.target.value);
+    }
+
+    const handleChordChange = (e) =>{
+        console.log('Chord: ' + e.target.value);
+    }
+
+    const handleOctiveChange = (e) =>{
+        console.log('Octive: ' + e.target.value);
+    }
 
     return (
         <div className="tonal-controller">
             <div className="tonal-main-container">
                 <div className="Key-controller">
                     <label id="Labels"> Key:</label>
-                    <select>
-                        <option value="">C</option>
-                        <option value="">C#/Db</option>
-                        <option value="">D</option>
-                        <option value="">D#/Eb</option>
-                        <option value="">F</option>
-                        <option value="">F#</option>
-                        <option value="">G</option>
-                        <option value="">G#/Ab</option>
-                        <option value="">A</option>
-                        <option value="">A#/Bb</option>
-                        <option value="">B</option>
+                    <select onChange={handleKeyChange}>
+                        <option value="C">C</option>
+                        <option value="C#/Db">C#/Db</option>
+                        <option value="D">D</option>
+                        <option value="D#/Eb">D#/Eb</option>
+                        <option value="F">F</option>
+                        <option value="F#">F#</option>
+                        <option value="G">G</option>
+                        <option value="G#/Ab">G#/Ab</option>
+                        <option value="A">A</option>
+                        <option value="A#/Bb">A#/Bb</option>
+                        <option value="B">B</option>
                     </select>
                     <label id="Labels"> Chords:</label>
-                    <select>
-                        <option value="">Major</option>
-                        <option value="">Minor</option>
-                        <option value="">Diminished</option>
-                        <option value="">Augmented</option>
+                    <select onChange={handleChordChange}>
+                        <option value="Major">Major</option>
+                        <option value="Minor">Minor</option>
+                        <option value="Diminished">Diminished</option>
+                        <option value="Augmented">Augmented</option>
                 
                     </select>
                 </div>
                 <div className="Octive-controller">
                     <label id="Labels"> Octive:</label>
-                    <select>
-                        <option value="">1</option>
-                        <option value="">2</option>
-                        <option value="">3</option>
-                        <option value="">4</option>
-                        <option value="">5</option>
-                        <option value="">6</option>
-                        <option value="">7</option>
+                    <select onChange={handleOctiveChange}>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
                     </select>
                 </div>
             </div>
