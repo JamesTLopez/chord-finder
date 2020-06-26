@@ -9,9 +9,7 @@ import '../styles/keys.css'
 
 export default function Keys() {
 
-    // const Notes = ['C','C#','Db','D','D#','Eb','E','F','F#','Gb','G','G#','Ab','A','A#','Bb','B'];
-    // const Octives = [1,2,3,4,5,6,7];
-
+ 
     
     let SoundEngine = new Howl({
         src:[C],

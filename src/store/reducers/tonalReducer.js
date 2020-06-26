@@ -2,7 +2,7 @@ import {GET_TONAL_STATE} from '../actions/types'
 
 const initState = {
     key:'C',
-    chord:'Minor',
+    scale:'Minor',
     octive:'2'
 };
 

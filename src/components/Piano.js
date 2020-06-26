@@ -8,7 +8,7 @@ import '../styles/piano.css'
 export default function Piano() {
     return (
         <div className="container">
-            <header><h1>Chord Finder</h1></header>
+            <header>Chord Finder</header>
             <Visualizer/>
             <Keyboard/>
             <TonalController/>
