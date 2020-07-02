@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import {GET_TONAL_STATE,
     GET_CHORD_NAMES,UPDATE_KEY,UPDATE_OCTAVE,UPDATE_SCALE} from '../store/actions/types'
-import { ChordType } from "@tonaljs/tonal";
+// import { ChordType } from "@tonaljs/tonal";
 import '../styles/tonalController.css'
 
 
@@ -16,12 +16,12 @@ function TonalController(props) {
 
     const Notes = ['C','C#/Db','D','D#/Eb','E','F','F#/Gb','G','G#/Ab','A','A#/Bb','B'];
     const Scale = ["Major","Minor","Diminished","Augmented"];
-    const Octaves = [1,2,3,4,5,6,7];
+    const Octaves = [1,2,3,4,5];
 
-    const allChords = ChordType.all();
-    const allChordNames = allChords.map(chordName => {
-        return chordName.aliases[0];
-    })
+    // const allChords = ChordType.all();
+    // const allChordNames = allChords.map(chordName => {
+    //     return chordName.aliases[0];
+    // })
 
 
     useEffect(()=>{
