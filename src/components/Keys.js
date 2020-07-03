@@ -1,24 +1,81 @@
-import React,{ useState } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import {Howl} from 'howler'
 import White from "../images/Whitekey.png"
 import Black from "../images/blackkey.png"
 import Audio from '../audio/C.ogg'
 import '../styles/keys.css'
-import {GET_TONAL_STATE,
-    GET_CHORD_NAMES} from '../store/actions/types'
-import { Note, Interval, Scale } from "@tonaljs/tonal";
+import { Note } from "@tonaljs/tonal";
 
 
 
 
 function Keys(props) {
     
-
-   console.log(props.octaveM);
     let octaveController = props.octaveM;
+    let keyboard = "awsedftgyhujk";
+    let keyBuffer = [];
 
-    
+    window.addEventListener('keyup',(e) => {
+        console.log(keyBuffer)
+        keyBuffer = [];
+    })
+
+
+    window.addEventListener('keydown',(e)=>{
+        if( -1 < keyboard.search(e.key)){
+            switch(e.key){
+                case 'a':
+                    let note = "C" + octaveController[0];
+                    playC("C" + octaveController[0]);
+                    keyBuffer.push(octaveController[0]);
+                    break;
+                case 'w':
+                    playC("Db" + octaveController[0]);
+                    keyBuffer.push(octaveController[0]);
+                    break;
+                case 's':
+                    playC("D" + octaveController[0]);
+                    break;
+                case 'e':
+                    playC("Eb" + octaveController[0]);
+                    break;
+                case 'd':
+                    playC("E" + octaveController[0]);
+                    break;
+                case 'f':
+                    playC("F" + octaveController[0]);
+                    break;
+                case 't':
+                    playC("Gb" + octaveController[0]);
+                    break;
+                case 'g':   
+                    playC("G" + octaveController[0]);
+                    break;
+                case 'y':
+                    playC("Ab" + octaveController[0]);
+                    break;
+                case 'h':
+                    playC("A" + octaveController[0]);
+                    break;
+                case 'u':
+                    playC("Bb" + octaveController[0]);
+                    break;
+                case 'j':
+                    playC("B" + octaveController[0]);
+                    break;
+                case 'k':
+                    playC("C" + (octaveController[0] + 1));
+                    break;
+                default:
+                    break;
+            }
+        }else{
+            console.log('wrong');
+        }
+    })
+
+
     let SoundEngine = new Howl({
         src:[Audio],
         onload(){
@@ -33,15 +90,14 @@ function Keys(props) {
     
     let playC = (e) => {
         let midiInfo = Note.midi(e);
-        console.log(midiInfo);
+       
         const noteLength = 2000;
         let tIndex = 0;
         for(let i = 24; i<=96; i++){
             SoundEngine['_sprite'][i] = [tIndex,noteLength];
             tIndex += noteLength;
         }
-        SoundEngine.play(""+midiInfo);
-        
+        SoundEngine.play(midiInfo.toString());
     }
 
 
