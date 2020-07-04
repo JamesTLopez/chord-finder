@@ -13,67 +13,87 @@ import { Note } from "@tonaljs/tonal";
 function Keys(props) {
     
     let octaveController = props.octaveM;
+    let pianoKeys = ["C","Db","D","Eb","E","F","Gb","G","Ab","A","Bb","B"];
     let keyboard = "awsedftgyhujk";
+    // let keyboard = ['a','w','s','e','d','f','t','g','y','h','u','j','k'];
     let keyBuffer = [];
+    let down = false;
 
     window.addEventListener('keyup',(e) => {
         console.log(keyBuffer)
         keyBuffer = [];
-    })
+    },false)
 
 
     window.addEventListener('keydown',(e)=>{
-        if( -1 < keyboard.search(e.key)){
-            switch(e.key){
-                case 'a':
-                    let note = "C" + octaveController[0];
-                    playC("C" + octaveController[0]);
-                    keyBuffer.push(octaveController[0]);
-                    break;
-                case 'w':
-                    playC("Db" + octaveController[0]);
-                    keyBuffer.push(octaveController[0]);
-                    break;
-                case 's':
-                    playC("D" + octaveController[0]);
-                    break;
-                case 'e':
-                    playC("Eb" + octaveController[0]);
-                    break;
-                case 'd':
-                    playC("E" + octaveController[0]);
-                    break;
-                case 'f':
-                    playC("F" + octaveController[0]);
-                    break;
-                case 't':
-                    playC("Gb" + octaveController[0]);
-                    break;
-                case 'g':   
-                    playC("G" + octaveController[0]);
-                    break;
-                case 'y':
-                    playC("Ab" + octaveController[0]);
-                    break;
-                case 'h':
-                    playC("A" + octaveController[0]);
-                    break;
-                case 'u':
-                    playC("Bb" + octaveController[0]);
-                    break;
-                case 'j':
-                    playC("B" + octaveController[0]);
-                    break;
-                case 'k':
-                    playC("C" + (octaveController[0] + 1));
-                    break;
-                default:
-                    break;
-            }
-        }else{
+ 
+        let st = keyboard.indexOf(e.key)
+        if(st !== -1){
+     
+                let note = pianoKeys[st] + octaveController[0];
+                playC(note);
+                keyBuffer.push(note);
+
+        }
+        else{
             console.log('wrong');
         }
-    })
+
+        // if( -1 < keyboard.search(e.key)){
+        //     switch(e.key){
+        //         case 'a':
+        //             let note = "C" + octaveController[0];
+        //             playC("C" + octaveController[0]);
+        //             keyBuffer.push(octaveController[0]);
+        //             break;
+        //         case 'w':
+        //             playC("Db" + octaveController[0]);
+        //             keyBuffer.push(octaveController[0]);
+        //             break;
+        //         case 's':
+        //             playC("D" + octaveController[0]);
+        //             keyBuffer.push(octaveController[0]);
+        //             break;
+        //         case 'e':
+        //             playC("Eb" + octaveController[0]);
+        //             keyBuffer.push(octaveController[0]);
+        //             break;
+        //         case 'd':
+        //             playC("E" + octaveController[0]);
+        //             keyBuffer.push(octaveController[0]);
+        //             break;
+        //         case 'f':
+        //             playC("F" + octaveController[0]);
+        //             break;
+        //         case 't':
+        //             playC("Gb" + octaveController[0]);
+        //             break;
+        //         case 'g':   
+        //             playC("G" + octaveController[0]);
+        //             break;
+        //         case 'y':
+        //             playC("Ab" + octaveController[0]);
+        //             break;
+        //         case 'h':
+        //             playC("A" + octaveController[0]);
+        //             break;
+        //         case 'u':
+        //             playC("Bb" + octaveController[0]);
+        //             break;
+        //         case 'j':
+        //             playC("B" + octaveController[0]);
+        //             break;
+        //         case 'k':
+        //             playC("C" + (octaveController[0] + 1));
+        //             break;
+        //         default:
+        //             break;
+        //     }
+        // }else{
+        //     console.log('wrong');
+        // }
+
+    },false)
 
 
     let SoundEngine = new Howl({
