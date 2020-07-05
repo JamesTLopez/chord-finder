@@ -1,4 +1,4 @@
-import React from 'react'
+import React ,{useEffect}from 'react'
 import { connect } from 'react-redux'
 import {Howl} from 'howler'
 import White from "../images/Whitekey.png"
@@ -14,84 +14,43 @@ function Keys(props) {
     
     let octaveController = props.octaveM;
     let pianoKeys = ["C","Db","D","Eb","E","F","Gb","G","Ab","A","Bb","B"];
+    let pianoWhite = ["C","D","E","F","G","A","B"];
+    let allowRepeat = true;
     let keyboard = "awsedftgyhujk";
-    // let keyboard = ['a','w','s','e','d','f','t','g','y','h','u','j','k'];
     let keyBuffer = [];
+    let keyDisplay = [];
+
     let down = false;
 
+    useEffect(() => {
+        let octaveController = props.octaveM;
+        console.log(octaveController)
+    },[props.octaveM]);
+
     window.addEventListener('keyup',(e) => {
-        console.log(keyBuffer)
-        keyBuffer = [];
+        // keyDisplay = keyDisplay;
+        // keyBuffer = []
+        // console.log(keyBuffer)
+        // console.log(keyDisplay)
+    
     },false)
 
 
     window.addEventListener('keydown',(e)=>{
- 
-        let st = keyboard.indexOf(e.key)
+        if(e.repeat != undefined){
+            allowRepeat = !e.repeat;
+        }
+        let st = keyboard.indexOf(e.key);
         if(st !== -1){
-     
-                let note = pianoKeys[st] + octaveController[0];
-                playC(note);
-                keyBuffer.push(note);
-
+            let note = pianoKeys[st] + octaveController[0];
+            playC(note);
+            keyBuffer.push(note);
+            keyDisplay = [];
+       
         }
         else{
             console.log('wrong');
         }
-
-        // if( -1 < keyboard.search(e.key)){
-        //     switch(e.key){
-        //         case 'a':
-        //             let note = "C" + octaveController[0];
-        //             playC("C" + octaveController[0]);
-        //             keyBuffer.push(octaveController[0]);
-        //             break;
-        //         case 'w':
-        //             playC("Db" + octaveController[0]);
-        //             keyBuffer.push(octaveController[0]);
-        //             break;
-        //         case 's':
-        //             playC("D" + octaveController[0]);
-        //             keyBuffer.push(octaveController[0]);
-        //             break;
-        //         case 'e':
-        //             playC("Eb" + octaveController[0]);
-        //             keyBuffer.push(octaveController[0]);
-        //             break;
-        //         case 'd':
-        //             playC("E" + octaveController[0]);
-        //             keyBuffer.push(octaveController[0]);
-        //             break;
-        //         case 'f':
-        //             playC("F" + octaveController[0]);
-        //             break;
-        //         case 't':
-        //             playC("Gb" + octaveController[0]);
-        //             break;
-        //         case 'g':   
-        //             playC("G" + octaveController[0]);
-        //             break;
-        //         case 'y':
-        //             playC("Ab" + octaveController[0]);
-        //             break;
-        //         case 'h':
-        //             playC("A" + octaveController[0]);
-        //             break;
-        //         case 'u':
-        //             playC("Bb" + octaveController[0]);
-        //             break;
-        //         case 'j':
-        //             playC("B" + octaveController[0]);
-        //             break;
-        //         case 'k':
-        //             playC("C" + (octaveController[0] + 1));
-        //             break;
-        //         default:
-        //             break;
-        //     }
-        // }else{
-        //     console.log('wrong');
-        // }
 
     },false)
 
@@ -110,7 +69,6 @@ function Keys(props) {
     
     let playC = (e) => {
         let midiInfo = Note.midi(e);
-       
         const noteLength = 2000;
         let tIndex = 0;
         for(let i = 24; i<=96; i++){
@@ -127,69 +85,22 @@ function Keys(props) {
         <div className="playArea">
             <div className="keys">
                 <div className="whitekeys">
-                    <div className="white-key">
-                        <img src={White} alt="C Chord" onClick={()=>playC("C" + octaveController[0])}></img>
+                {pianoWhite.map((not,i) =>
+                    <div key={i} className="white-key">
+                        <img src={White} alt="C Chord" onClick={()=>playC(not + octaveController[0])}></img>
                     </div>
-                    <div className="white-key">
-                        <img src={White} alt="C Chord" onClick={()=>playC("D" + octaveController[0])}></img>
+                )}
+                {pianoWhite.map((not,i) =>
+                    <div key={i} className="white-key">
+                        <img src={White} alt="C Chord" onClick={()=>playC(not + octaveController[1])}></img>
                     </div>
-                    <div className="white-key">
-                        <img src={White} alt="C Chord" onClick={()=>playC("E" + octaveController[0])}></img>
+                )}
+                {pianoWhite.map((not,i) =>
+                    <div key={i} className="white-key">
+                        <img src={White} alt="C Chord" onClick={()=>playC(not + octaveController[2])}></img>
                     </div>
-                    <div className="white-key">
-                        <img src={White} alt="C Chord" onClick={()=>playC("F" + octaveController[0])}></img>
-                    </div>
-                    <div className="white-key">
-                        <img src={White} alt="C Chord" onClick={()=>playC("G" + octaveController[0])}></img>
-                    </div>
-                    <div className="white-key">
-                        <img src={White} alt="C Chord" onClick={()=>playC("A" + octaveController[0])}></img>
-                    </div>
-                    <div className="white-key">
-                        <img src={White} alt="C Chord" onClick={()=>playC("B" + octaveController[0])}></img>
-                    </div>
-                    <div className="white-key">
-                        <img src={White} alt="C Chord" onClick={()=>playC("C" + octaveController[1])}></img>
-                    </div>
-                    <div className="white-key">
-                        <img src={White} alt="C Chord" onClick={()=>playC("D" + octaveController[1])}></img>
-                    </div>
-                    <div className="white-key">
-                        <img src={White} alt="C Chord" onClick={()=>playC("E" + octaveController[1])}></img>
-                    </div>
-                    <div className="white-key">
-                        <img src={White} alt="C Chord" onClick={()=>playC("F" + octaveController[1])}></img>
-                    </div>
-                    <div className="white-key">
-                        <img src={White} alt="C Chord" onClick={()=>playC("G" + octaveController[1])}></img>
-                    </div>
-                    <div className="white-key">
-                        <img src={White} alt="C Chord" onClick={()=>playC("A" + octaveController[1])}></img>
-                    </div>
-                    <div className="white-key">
-                        <img src={White} alt="C Chord" onClick={()=>playC("B" + octaveController[1])}></img>
-                    </div>
-                   <div className="white-key">
-                        <img src={White} alt="C Chord" onClick={()=>playC("C" + octaveController[2])}></img>
-                    </div>
-                    <div className="white-key">
-                        <img src={White} alt="C Chord" onClick={()=>playC("D" + octaveController[2])}></img>
-                    </div>
-                    <div className="white-key">
-                        <img src={White} alt="C Chord" onClick={()=>playC("E" + octaveController[2])}></img>
-                    </div>
-                    <div className="white-key">
-                        <img src={White} alt="C Chord" onClick={()=>playC("F" + octaveController[2])}></img>
-                    </div>
-                    <div className="white-key">
-                        <img src={White} alt="C Chord" onClick={()=>playC("G" + octaveController[2])}></img>
-                    </div>
-                    <div className="white-key">
-                        <img src={White} alt="C Chord" onClick={()=>playC("A" + octaveController[2])}></img>
-                    </div>
-                    <div className="white-key">
-                        <img src={White} alt="C Chord" onClick={()=>playC("B" + octaveController[2])}></img>
-                    </div>
+                )}
+            
                    
                 </div>
                 <div className="blackkeys">

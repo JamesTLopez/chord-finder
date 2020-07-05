@@ -1,5 +1,5 @@
 import {GET_TONAL_STATE,
-        GET_CHORD_NAMES,UPDATE_KEY,UPDATE_OCTAVE,UPDATE_SCALE} from '../actions/types'
+        GET_CHORD_NAMES,UPDATE_KEY,UPDATE_OCTAVE,UPDATE_SCALE,UPDATE_SCALE_TYPE} from '../actions/types'
 import { ChordType } from "@tonaljs/tonal";
 
 const allChords = ChordType.all();
@@ -10,9 +10,10 @@ const allChordNames = allChords.map(chordName => {
 
 const initState = {
     key:'C',
-    scale:'Major',
+    scale:'C Major',
+    scaleType:'Major',
     octave:'2',
-    octaveM:[2,3,4]
+    octaveM:[2,3,4],
 };
 
 
@@ -34,10 +35,18 @@ export default (state = initState, action) =>{
                 key
             }
         case UPDATE_SCALE:
-            const scale = action.payload;
+            const keys = action.payloadK;
+            const newScale = action.payloadS;
+            const scale = keys + " " + newScale;
             return{
                 ...state,
                 scale
+            }
+        case UPDATE_SCALE_TYPE:
+            const scaleType = action.payload;
+            return{
+                ...state,
+                scaleType
             }
         case UPDATE_OCTAVE:
             const octave = action.payload;
