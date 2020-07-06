@@ -1,9 +1,9 @@
-import React,{ useState, useEffect } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
-import {GET_TONAL_STATE,
-    GET_CHORD_NAMES,UPDATE_KEY,UPDATE_OCTAVE,UPDATE_SCALE,UPDATE_SCALE_TYPE} from '../store/actions/types'
-import { Scale } from "@tonaljs/tonal";
+import {UPDATE_KEY,
+    UPDATE_OCTAVE,
+    UPDATE_SCALE,
+    UPDATE_SCALE_TYPE} from '../store/actions/types'
 import '../styles/tonalController.css'
 
 
@@ -63,20 +63,16 @@ function TonalController(props) {
     )
 }
 
-TonalController.propTypes = {
-    getTonalState: PropTypes.func.isRequired
-}
 
 const mapStateToProps = ({tonalState}) => ({
     keys:tonalState.key,
     scale:tonalState.scale,
     scaleType:tonalState.scaleType,
-    octave:tonalState.octave
+    octave:tonalState.octave,
+    chord:tonalState.chord
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    getTonalState: () => dispatch({type:GET_TONAL_STATE}),
-    getChordNames: () => dispatch({type:GET_CHORD_NAMES}),
     updateKey: (key) => dispatch({type:UPDATE_KEY,payload:key}),
     updateScale:(key,scale) => dispatch({type:UPDATE_SCALE,payloadK:key,payloadS:scale}),
     updateScaleType:(scale) => dispatch({type:UPDATE_SCALE_TYPE,payload:scale}),

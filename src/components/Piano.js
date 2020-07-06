@@ -3,6 +3,18 @@ import Visualizer  from './Visualizer'
 import Keyboard from './Keys'
 import TonalController from './TonalController'
 import '../styles/piano.css'
+import {Howl} from 'howler'
+import Audio from '../audio/C.ogg'
+
+let SoundEngine = new Howl({
+    src:[Audio],
+    onload(){
+        console.log("Loaded")
+    },
+    onloaderror(e,msg){
+        console.log('' + msg + e)
+    }
+})
 
 
 export default function Piano() {
@@ -10,7 +22,7 @@ export default function Piano() {
         <div className="container">
             <header>Chord Finder</header>
             <Visualizer/>
-            <Keyboard/>
+            <Keyboard SoundEngine={SoundEngine}/>
             <TonalController/>
         </div> 
     )

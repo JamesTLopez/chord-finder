@@ -1,11 +1,10 @@
 import React ,{useEffect}from 'react'
 import { connect } from 'react-redux'
-import {Howl} from 'howler'
 import White from "../images/Whitekey.png"
 import Black from "../images/blackkey.png"
-import Audio from '../audio/C.ogg'
 import '../styles/keys.css'
 import { Note } from "@tonaljs/tonal";
+import { UPDATE_CHORD } from '../store/actions/types'
 
 
 
@@ -19,70 +18,94 @@ function Keys(props) {
     let keyboard = "awsedftgyhujk";
     let keyBuffer = [];
     let keyDisplay = [];
-
-    let down = false;
+    let count = 0;
+    let ChordPlayed = [];
 
     useEffect(() => {
         let octaveController = props.octaveM;
         console.log(octaveController)
     },[props.octaveM]);
 
-    window.addEventListener('keyup',(e) => {
-        // keyDisplay = keyDisplay;
-        // keyBuffer = []
-        // console.log(keyBuffer)
-        // console.log(keyDisplay)
+    // window.addEventListener('keyup',(e) => {
     
-    },false)
+        // props.updateChord(keyBuffer);
+        // keyBuffer = []
+        // allowRepeat = true;
+   
+    //     count = 0;
+    // },false)
 
 
-    window.addEventListener('keydown',(e)=>{
+    // window.addEventListener('keydown',(e)=>{
+
+        // //Prevents repeat of multiple notes
+        // if(e.repeat != undefined){
+        //     allowRepeat = !e.repeat;
+        // }
+        // if(!allowRepeat) return;
+        // allowRepeat = false;
+
+        
+
+        // let st = keyboard.indexOf(e.key);
+        // if(st !== -1){
+        //     let note = pianoKeys[st] + octaveController[0];
+        //     playC(note);
+        //     keyBuffer.push(pianoKeys[st]);
+            
+        // }
+        // else{
+        //     console.log('wrong');
+        // }
+
+    // },false)
+
+
+  
+    
+    let playC = (e) => {
+        let midiInfo = Note.midi(e);
+   
+        const noteLength = 2000;
+        let tIndex = 0;
+        for(let i = 24; i<=96; i++){
+            props.SoundEngine['_sprite'][i] = [tIndex,noteLength];
+            tIndex += noteLength;
+        }
+        props.SoundEngine.play(midiInfo.toString());       
+    }
+
+    let keyDown = (e) =>{
+        //Prevents repeat of multiple notes
         if(e.repeat != undefined){
             allowRepeat = !e.repeat;
         }
+        if(!allowRepeat) return;
+        allowRepeat = false;
+
+        
+
         let st = keyboard.indexOf(e.key);
         if(st !== -1){
             let note = pianoKeys[st] + octaveController[0];
             playC(note);
-            keyBuffer.push(note);
-            keyDisplay = [];
-       
+            keyBuffer.push(pianoKeys[st]);
+            
         }
         else{
             console.log('wrong');
         }
-
-    },false)
-
-
-    let SoundEngine = new Howl({
-        src:[Audio],
-        onload(){
-            console.log("Loaded")
-        },
-        onloaderror(e,msg){
-            console.log('' + msg + e)
-        }
-
-    })
-   
-    
-    let playC = (e) => {
-        let midiInfo = Note.midi(e);
-        const noteLength = 2000;
-        let tIndex = 0;
-        for(let i = 24; i<=96; i++){
-            SoundEngine['_sprite'][i] = [tIndex,noteLength];
-            tIndex += noteLength;
-        }
-        SoundEngine.play(midiInfo.toString());
     }
 
-
+    let keyUp = (e) =>{
+        props.updateChord(keyBuffer);
+        keyBuffer = []
+        allowRepeat = true;
+    }
 
     
     return (
-        <div className="playArea">
+        <div className="playArea" onKeyDown={(e)=>keyDown(e)} onKeyUp={()=>keyUp()} tabIndex="0">
             <div className="keys">
                 <div className="whitekeys">
                 {pianoWhite.map((not,i) =>
@@ -172,9 +195,14 @@ const mapStateToProps = ({tonalState}) => ({
     keys:tonalState.key,
     scale:tonalState.scale,
     octave:tonalState.octave,
-    octaveM:tonalState.octaveM
+    octaveM:tonalState.octaveM,
+    chord:tonalState.chord
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    updateChord:(buffer) => dispatch({type:UPDATE_CHORD,payload:buffer})
 })
 
 
 
-export default connect(mapStateToProps,null)(Keys)
+export default connect(mapStateToProps,mapDispatchToProps)(Keys)
