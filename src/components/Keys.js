@@ -26,47 +26,12 @@ function Keys(props) {
         console.log(octaveController)
     },[props.octaveM]);
 
-    // window.addEventListener('keyup',(e) => {
-    
-        // props.updateChord(keyBuffer);
-        // keyBuffer = []
-        // allowRepeat = true;
-   
-    //     count = 0;
-    // },false)
-
-
-    // window.addEventListener('keydown',(e)=>{
-
-        // //Prevents repeat of multiple notes
-        // if(e.repeat != undefined){
-        //     allowRepeat = !e.repeat;
-        // }
-        // if(!allowRepeat) return;
-        // allowRepeat = false;
-
-        
-
-        // let st = keyboard.indexOf(e.key);
-        // if(st !== -1){
-        //     let note = pianoKeys[st] + octaveController[0];
-        //     playC(note);
-        //     keyBuffer.push(pianoKeys[st]);
-            
-        // }
-        // else{
-        //     console.log('wrong');
-        // }
-
-    // },false)
-
-
   
     
     let playC = (e) => {
         let midiInfo = Note.midi(e);
    
-        const noteLength = 2000;
+        const noteLength = 1997;
         let tIndex = 0;
         for(let i = 24; i<=96; i++){
             props.SoundEngine['_sprite'][i] = [tIndex,noteLength];
@@ -87,6 +52,12 @@ function Keys(props) {
 
         let st = keyboard.indexOf(e.key);
         if(st !== -1){
+            if(st === 12){
+                let note = "C" + (octaveController[0] + 1);
+                playC(note);
+                keyBuffer.push(pianoKeys[st]);
+                return;
+            }
             let note = pianoKeys[st] + octaveController[0];
             playC(note);
             keyBuffer.push(pianoKeys[st]);
@@ -106,86 +77,131 @@ function Keys(props) {
     
     return (
         <div className="playArea" onKeyDown={(e)=>keyDown(e)} onKeyUp={()=>keyUp()} tabIndex="0">
-            <div className="keys">
-                <div className="whitekeys">
-                {pianoWhite.map((not,i) =>
-                    <div key={i} className="white-key">
-                        <img src={White} alt="C Chord" onClick={()=>playC(not + octaveController[0])}></img>
+            <div className="keyboard-container">
+                <div className="Keys">
+                    <div className="white-key">
+                        <img src={White} alt="C" onClick={()=>playC("C" + octaveController[0])}></img>
                     </div>
-                )}
-                {pianoWhite.map((not,i) =>
-                    <div key={i} className="white-key">
-                        <img src={White} alt="C Chord" onClick={()=>playC(not + octaveController[1])}></img>
+                    <div className="black-key">
+                        <img src={Black} alt="Db" onClick={()=>playC('Db'+ octaveController[0])}></img>
                     </div>
-                )}
-                {pianoWhite.map((not,i) =>
-                    <div key={i} className="white-key">
-                        <img src={White} alt="C Chord" onClick={()=>playC(not + octaveController[2])}></img>
+                    <div className="white-key">
+                        <img src={White} alt="D" onClick={()=>playC("D" + octaveController[0])}></img>
                     </div>
-                )}
+                    <div className="black-key">
+                        <img src={Black} alt="Eb" onClick={()=>playC('Eb'+ octaveController[0])}></img>
+                    </div>
+                    <div  className="white-key">
+                        <img src={White} alt="E" onClick={()=>playC("E" + octaveController[0])}></img>
+                    </div>
+                    <div className="white-key">
+                        <img src={White} alt="F" onClick={()=>playC("F" + octaveController[0])}></img>
+                    </div>
+                    <div className="black-key">
+                        <img src={Black} alt="Gb" onClick={()=>playC('Gb'+ octaveController[0])}></img>
+                    </div>
+                    <div className="white-key">
+                        <img src={White} alt="G" onClick={()=>playC("G" + octaveController[0])}></img>
+                    </div>
+                    <div className="black-key">
+                        <img src={Black} alt="Ab" onClick={()=>playC('Ab'+ octaveController[0])}></img>
+                    </div>
+                    <div className="white-key">
+                        <img src={White} alt="A" onClick={()=>playC("A" + octaveController[0])}></img>
+                    </div>
+                    <div className="black-key">
+                        <img src={Black} alt="Bb" onClick={()=>playC('Bb'+ octaveController[0])}></img>
+                    </div>
+                    <div className="white-key">
+                        <img src={White} alt="B" onClick={()=>playC("B" + octaveController[0])}></img>
+                    </div>
+                    <div className="white-key">
+                        <img src={White} alt="C" onClick={()=>playC("C" + (octaveController[0] + 1))}></img>
+                    </div>
+                </div>
+                <div className="Keys">
+                    <div className="white-key">
+                        <img src={White} alt="C" onClick={()=>playC("C" + octaveController[1])}></img>
+                    </div>
+                    <div className="black-key">
+                        <img src={Black} alt="Db" onClick={()=>playC('Db'+ octaveController[1])}></img>
+                    </div>
+                    <div className="white-key">
+                        <img src={White} alt="D" onClick={()=>playC("D" + octaveController[1])}></img>
+                    </div>
+                    <div className="black-key">
+                        <img src={Black} alt="Eb" onClick={()=>playC('Eb'+ octaveController[1])}></img>
+                    </div>
+                    <div  className="white-key">
+                        <img src={White} alt="E" onClick={()=>playC("E" + octaveController[1])}></img>
+                    </div>
+                    <div className="white-key">
+                        <img src={White} alt="F" onClick={()=>playC("F" + octaveController[1])}></img>
+                    </div>
+                    <div className="black-key">
+                        <img src={Black} alt="Gb" onClick={()=>playC('Gb'+ octaveController[1])}></img>
+                    </div>
+                    <div className="white-key">
+                        <img src={White} alt="G" onClick={()=>playC("G" + octaveController[1])}></img>
+                    </div>
+                    <div className="black-key">
+                        <img src={Black} alt="Ab" onClick={()=>playC('Ab'+ octaveController[1])}></img>
+                    </div>
+                    <div className="white-key">
+                        <img src={White} alt="A" onClick={()=>playC("A" + octaveController[1])}></img>
+                    </div>
+                    <div className="black-key">
+                        <img src={Black} alt="Bb" onClick={()=>playC('Bb'+ octaveController[1])}></img>
+                    </div>
+                    <div className="white-key">
+                        <img src={White} alt="B" onClick={()=>playC("B" + octaveController[1])}></img>
+                    </div>
+                    <div className="white-key">
+                        <img src={White} alt="C" onClick={()=>playC("C" + (octaveController[1] + 1))}></img>
+                    </div>
+                </div>
+                <div className="Keys">
+                    <div className="white-key">
+                        <img src={White} alt="C" onClick={()=>playC("C" + octaveController[2])}></img>
+                    </div>
+                    <div className="black-key">
+                        <img src={Black} alt="Db" onClick={()=>playC('Db'+ octaveController[2])}></img>
+                    </div>
+                    <div className="white-key">
+                        <img src={White} alt="D" onClick={()=>playC("D" + octaveController[2])}></img>
+                    </div>
+                    <div className="black-key">
+                        <img src={Black} alt="Eb" onClick={()=>playC('Eb'+ octaveController[2])}></img>
+                    </div>
+                    <div  className="white-key">
+                        <img src={White} alt="E" onClick={()=>playC("E" + octaveController[2])}></img>
+                    </div>
+                    <div className="white-key">
+                        <img src={White} alt="F" onClick={()=>playC("F" + octaveController[2])}></img>
+                    </div>
+                    <div className="black-key">
+                        <img src={Black} alt="Gb" onClick={()=>playC('Gb'+ octaveController[2])}></img>
+                    </div>
+                    <div className="white-key">
+                        <img src={White} alt="G" onClick={()=>playC("G" + octaveController[2])}></img>
+                    </div>
+                    <div className="black-key">
+                        <img src={Black} alt="Ab" onClick={()=>playC('Ab'+ octaveController[2])}></img>
+                    </div>
+                    <div className="white-key">
+                        <img src={White} alt="A" onClick={()=>playC("A" + octaveController[2])}></img>
+                    </div>
+                    <div className="black-key">
+                        <img src={Black} alt="Bb" onClick={()=>playC('Bb'+ octaveController[2])}></img>
+                    </div>
+                    <div className="white-key">
+                        <img src={White} alt="B" onClick={()=>playC("B" + octaveController[2])}></img>
+                    </div>
+                    <div className="white-key">
+                        <img src={White} alt="C" onClick={()=>playC("C" + (octaveController[2] + 1))}></img>
+                    </div>
+                </div>
             
-                   
-                </div>
-                <div className="blackkeys">
-                    <div className="black-group-1">
-                        <div className="black-key-g1-1">
-                            <img src={Black} alt="C Chord" onClick={()=>playC('Db'+ octaveController[0])}></img>
-                        </div>
-                        <div className="black-key-g1-2">
-                            <img src={Black} alt="C Chord" onClick={()=>playC('Eb'+ octaveController[0])}></img>
-                        </div>
-                    </div>
-                    <div className="black-group-2">
-                        <div className="black-key-g2-1">
-                            <img src={Black} alt="C Chord" onClick={()=>playC('Gb'+ octaveController[0])}></img>
-                        </div>
-                        <div className="black-key-g2-2">
-                            <img src={Black} alt="C Chord" onClick={()=>playC('Ab'+ octaveController[0])}></img>
-                        </div>
-                        <div className="black-key-g2-3">
-                            <img src={Black} alt="C Chord" onClick={()=>playC('Bb'+ octaveController[0])}></img>
-                        </div>
-                    </div>
-                    
-                    <div className="black-group-3">
-                        <div className="black-key-g1-1">
-                            <img src={Black} alt="C Chord" onClick={()=>playC('Db'+ octaveController[1])}></img>
-                        </div>
-                        <div className="black-key-g1-2">
-                            <img src={Black} alt="C Chord" onClick={()=>playC('Eb'+ octaveController[1])}></img>
-                        </div>
-                    </div>
-                    <div className="black-group-4">
-                        <div className="black-key-g2-1">
-                            <img src={Black} alt="C Chord" onClick={()=>playC('Gb'+ octaveController[1])}></img>
-                        </div>
-                        <div className="black-key-g2-2">
-                            <img src={Black} alt="C Chord" onClick={()=>playC('Ab'+ octaveController[1])}></img>
-                        </div>
-                        <div className="black-key-g2-3">
-                            <img src={Black} alt="C Chord" onClick={()=>playC('Bb'+ octaveController[1])}></img>
-                        </div>
-                    </div>
-                    <div className="black-group-5">
-                        <div className="black-key-g1-1">
-                            <img src={Black} alt="C Chord" onClick={()=>playC('Db'+ octaveController[2])}></img>
-                        </div>
-                        <div className="black-key-g1-2">
-                            <img src={Black} alt="C Chord" onClick={()=>playC('Eb'+ octaveController[2])}></img>
-                        </div>
-                    </div>
-                    <div className="black-group-6">
-                        <div className="black-key-g2-1">
-                            <img src={Black} alt="C Chord" onClick={()=>playC('Gb'+ octaveController[2])}></img>
-                        </div>
-                        <div className="black-key-g2-2">
-                            <img src={Black} alt="C Chord" onClick={()=>playC('Ab'+ octaveController[2])}></img>
-                        </div>
-                        <div className="black-key-g2-3">
-                            <img src={Black} alt="C Chord" onClick={()=>playC('Bb'+ octaveController[2])}></img>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     )
