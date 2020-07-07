@@ -9,7 +9,8 @@ const initState = {
     scaleType:'Major',
     octave:'2',
     octaveM:[2,3,4],
-    chord:[]
+    chord:[],
+    notes:[]
 };
 
 
@@ -58,12 +59,15 @@ export default (state = initState, action) =>{
                 octaveM
             }
         case UPDATE_CHORD:
-
+           
+            const notes = action.payload;
             const chord = Chord.detect(action.payload);
-
+            console.log(chord);
+     
             return{
                 ...state,
-                chord
+                chord,
+                notes
             }
 
         default:

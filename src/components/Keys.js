@@ -1,4 +1,4 @@
-import React ,{useEffect}from 'react'
+import React ,{useEffect,useState}from 'react'
 import { connect } from 'react-redux'
 import White from "../images/Whitekey.png"
 import Black from "../images/blackkey.png"
@@ -13,13 +13,12 @@ function Keys(props) {
     
     let octaveController = props.octaveM;
     let pianoKeys = ["C","Db","D","Eb","E","F","Gb","G","Ab","A","Bb","B"];
-    let pianoWhite = ["C","D","E","F","G","A","B"];
     let allowRepeat = true;
-    let keyboard = "awsedftgyhujk";
-    let keyBuffer = [];
-    let keyDisplay = [];
-    let count = 0;
-    let ChordPlayed = [];
+    const keyboard = "awsedftgyhujk";
+    
+    let [keyBuffer,setBuffer] = useState(props.notes);
+
+
 
     useEffect(() => {
         let octaveController = props.octaveM;
@@ -42,13 +41,13 @@ function Keys(props) {
 
     let keyDown = (e) =>{
         //Prevents repeat of multiple notes
-        if(e.repeat != undefined){
+        if(e.repeat !== undefined){
             allowRepeat = !e.repeat;
         }
         if(!allowRepeat) return;
         allowRepeat = false;
 
-        
+
 
         let st = keyboard.indexOf(e.key);
         if(st !== -1){
@@ -56,27 +55,39 @@ function Keys(props) {
                 let note = "C" + (octaveController[0] + 1);
                 playC(note);
                 keyBuffer.push(pianoKeys[st]);
+                props.updateChord(keyBuffer);
                 return;
             }
             let note = pianoKeys[st] + octaveController[0];
             playC(note);
             keyBuffer.push(pianoKeys[st]);
-            
+            props.updateChord(keyBuffer);
+        
+    
         }
         else{
             console.log('wrong');
         }
+        console.log(keyBuffer)
+        
     }
 
     let keyUp = (e) =>{
-        props.updateChord(keyBuffer);
-        keyBuffer = []
-        allowRepeat = true;
+        let st = keyboard.indexOf(e.key);
+        let note  = pianoKeys[st];
+        setBuffer(keyBuffer.filter(not => not !== note));
+        
+        // props.updateChord(keyBuffer);
+        // allowRepeat = false;
+        // keyDisplay = keyBuffer;
+        // props.updateChord(keyDisplay);
+        // keyBuffer = [];
+        // allowRepeat = true;
     }
 
     
     return (
-        <div className="playArea" onKeyDown={(e)=>keyDown(e)} onKeyUp={()=>keyUp()} tabIndex="0">
+        <div className="playArea" onKeyDown={(e)=>keyDown(e)} onKeyUp={(e)=>keyUp(e)} tabIndex="0">
             <div className="keyboard-container">
                 <div className="Keys">
                     <div className="white-key">
@@ -115,9 +126,6 @@ function Keys(props) {
                     <div className="white-key">
                         <img src={White} alt="B" onClick={()=>playC("B" + octaveController[0])}></img>
                     </div>
-                    <div className="white-key">
-                        <img src={White} alt="C" onClick={()=>playC("C" + (octaveController[0] + 1))}></img>
-                    </div>
                 </div>
                 <div className="Keys">
                     <div className="white-key">
@@ -155,9 +163,6 @@ function Keys(props) {
                     </div>
                     <div className="white-key">
                         <img src={White} alt="B" onClick={()=>playC("B" + octaveController[1])}></img>
-                    </div>
-                    <div className="white-key">
-                        <img src={White} alt="C" onClick={()=>playC("C" + (octaveController[1] + 1))}></img>
                     </div>
                 </div>
                 <div className="Keys">
@@ -212,7 +217,8 @@ const mapStateToProps = ({tonalState}) => ({
     scale:tonalState.scale,
     octave:tonalState.octave,
     octaveM:tonalState.octaveM,
-    chord:tonalState.chord
+    chord:tonalState.chord,
+    notes:tonalState.notes
 })
 
 const mapDispatchToProps = (dispatch) => ({
