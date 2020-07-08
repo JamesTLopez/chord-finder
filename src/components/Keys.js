@@ -17,6 +17,9 @@ function Keys(props) {
     const keyboard = "awsedftgyhujkolp;";
     
     let [keyBuffer,setBuffer] = useState(props.notes);
+    let [pressedKey,setPressedKey] = useState([false,false,false,false,false,false,false,false,false,false,false,false,false]);
+    let isKeyPressed = pressedKey ? "pressedKey" : "note";
+    
 
   
     
@@ -40,20 +43,25 @@ function Keys(props) {
         if(!allowRepeat) return;
         allowRepeat = false;
 
-
-
         let st = keyboard.indexOf(e.key);
         if(st !== -1){
             if(st === 12){
                 
-                let note = "C" + (octaveController[0] + 1);
+                let note = "C" + (octaveController[1] + 1);
+                pressedKey[st] = true;
+                setPressedKey(pressedKey);
                 playC(note);
                 keyBuffer.push(pianoKeys[st]);
                 props.updateChord(keyBuffer);
+               
                 return;
             }
-            let note = pianoKeys[st] + octaveController[0];
-    
+            
+            
+            let note = pianoKeys[st] + octaveController[1];
+            pressedKey[st] = true;
+            setPressedKey(pressedKey);
+            console.log(pressedKey)
             playC(note);
             keyBuffer.push(pianoKeys[st]);
             props.updateChord(keyBuffer);
@@ -63,68 +71,29 @@ function Keys(props) {
         else{
             console.log('wrong');
         }
-
+           
         
     }
+
+    
 
     let keyUp = (e) =>{
         let st = keyboard.indexOf(e.key);
         let note  = pianoKeys[st];
+        pressedKey[st] = false;
+        setPressedKey(pressedKey);
+        console.log(pressedKey)
         setBuffer(keyBuffer.filter(not => not !== note));
-        
-        // props.updateChord(keyBuffer);
-        // allowRepeat = false;
-        // keyDisplay = keyBuffer;
-        // props.updateChord(keyDisplay);
-        // keyBuffer = [];
-        // allowRepeat = true;
     }
 
     
     return (
         <div className="playArea" onKeyDown={(e)=>keyDown(e)} onKeyUp={(e)=>keyUp(e)} tabIndex="0">
             <div className="keyboard-container">
+               
                 <div className="Keys">
                     <div className="white-key">
-                        <img src={White} alt="C" onClick={()=>playC("C" + octaveController[0])}></img>
-                    </div>
-                    <div className="black-key">
-                        <img src={Black} alt="Db" onClick={()=>playC('Db'+ octaveController[0])}></img>
-                    </div>
-                    <div className="white-key">
-                        <img src={White} alt="D" onClick={()=>playC("D" + octaveController[0])}></img>
-                    </div>
-                    <div className="black-key">
-                        <img src={Black} alt="Eb" onClick={()=>playC('Eb'+ octaveController[0])}></img>
-                    </div>
-                    <div  className="white-key">
-                        <img src={White} alt="E" onClick={()=>playC("E" + octaveController[0])}></img>
-                    </div>
-                    <div className="white-key">
-                        <img src={White} alt="F" onClick={()=>playC("F" + octaveController[0])}></img>
-                    </div>
-                    <div className="black-key">
-                        <img src={Black} alt="Gb" onClick={()=>playC('Gb'+ octaveController[0])}></img>
-                    </div>
-                    <div className="white-key">
-                        <img src={White} alt="G" onClick={()=>playC("G" + octaveController[0])}></img>
-                    </div>
-                    <div className="black-key">
-                        <img src={Black} alt="Ab" onClick={()=>playC('Ab'+ octaveController[0])}></img>
-                    </div>
-                    <div className="white-key">
-                        <img src={White} alt="A" onClick={()=>playC("A" + octaveController[0])}></img>
-                    </div>
-                    <div className="black-key">
-                        <img src={Black} alt="Bb" onClick={()=>playC('Bb'+ octaveController[0])}></img>
-                    </div>
-                    <div className="white-key">
-                        <img src={White} alt="B" onClick={()=>playC("B" + octaveController[0])}></img>
-                    </div>
-                </div>
-                <div className="Keys">
-                    <div className="white-key">
-                        <img src={White} alt="C" onClick={()=>playC("C" + octaveController[1])}></img>
+                        <img  src={White} alt="C" onClick={()=>playC("C" + octaveController[1])}></img>
                     </div>
                     <div className="black-key">
                         <img src={Black} alt="Db" onClick={()=>playC('Db'+ octaveController[1])}></img>
@@ -162,7 +131,45 @@ function Keys(props) {
                 </div>
                 <div className="Keys">
                     <div className="white-key">
-                        <img src={White} alt="C" onClick={()=>playC("C" + octaveController[2])}></img>
+                        <img className="C" id={pressedKey[0]?"pressedKey" : "note"} src={White} alt="C" onClick={()=>playC("C" + octaveController[0])}></img>
+                    </div>
+                    <div className="black-key">
+                        <img className="Db" id={pressedKey[1]?"pressedKey" : "note"} src={Black} alt="Db" onClick={()=>playC('Db'+ octaveController[0])}></img>
+                    </div>
+                    <div className="white-key">
+                        <img className="D" id={pressedKey[2]?"pressedKey" : "note"} src={White} alt="D" onClick={()=>playC("D" + octaveController[0])}></img>
+                    </div>
+                    <div className="black-key">
+                        <img className="Eb" id={pressedKey[3]?"pressedKey" : "note"} src={Black} alt="Eb" onClick={()=>playC('Eb'+ octaveController[0])}></img>
+                    </div>
+                    <div  className="white-key">
+                        <img className="E" id={pressedKey[4]?"pressedKey" : "note"} src={White} alt="E" onClick={()=>playC("E" + octaveController[0])}></img>
+                    </div>
+                    <div className="white-key">
+                        <img className="F" id={pressedKey[5]?"pressedKey" : "note"} src={White} alt="F" onClick={()=>playC("F" + octaveController[0])}></img>
+                    </div>
+                    <div className="black-key">
+                        <img className="Gb" id={pressedKey[6]?"pressedKey" : "note"} src={Black} alt="Gb" onClick={()=>playC('Gb'+ octaveController[0])}></img>
+                    </div>
+                    <div className="white-key">
+                        <img className="G" id={pressedKey[7]?"pressedKey" : "note"} src={White} alt="G" onClick={()=>playC("G" + octaveController[0])}></img>
+                    </div>
+                    <div className="black-key">
+                        <img className="Ab" id={pressedKey[8]?"pressedKey" : "note"} src={Black} alt="Ab" onClick={()=>playC('Ab'+ octaveController[0])}></img>
+                    </div>
+                    <div className="white-key">
+                        <img className="A" id={pressedKey[9]?"pressedKey" : "note"} src={White} alt="A" onClick={()=>playC("A" + octaveController[0])}></img>
+                    </div>
+                    <div className="black-key">
+                        <img className="Bb" id={pressedKey[10]?"pressedKey" : "note"} src={Black} alt="Bb" onClick={()=>playC('Bb'+ octaveController[0])}></img>
+                    </div>
+                    <div className="white-key">
+                        <img className="B" id={pressedKey[11]?"pressedKey" : "note"} src={White} alt="B" onClick={()=>playC("B" + octaveController[0])}></img>
+                    </div>
+                </div>
+                <div className="Keys">
+                    <div className="white-key">
+                        <img id={pressedKey[12]?"pressedKey" : "note"} src={White} alt="C" onClick={()=>playC("C" + octaveController[2])}></img>
                     </div>
                     <div className="black-key">
                         <img src={Black} alt="Db" onClick={()=>playC('Db'+ octaveController[2])}></img>
@@ -213,7 +220,8 @@ const mapStateToProps = ({tonalState}) => ({
     octave:tonalState.octave,
     octaveM:tonalState.octaveM,
     chord:tonalState.chord,
-    notes:tonalState.notes
+    notes:tonalState.notes,
+    isKeyPressed:tonalState.isKeyPressed
 })
 
 const mapDispatchToProps = (dispatch) => ({
