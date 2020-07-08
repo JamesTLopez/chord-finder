@@ -1,9 +1,11 @@
 /* PIANO PAGE CSS */
-
+@import './variables/variables';
   .container{
     min-height: 100vh;
+    height: 100vh;
+    width: 100%;
     display: flex;
-    background-color:#393939;
+    background-color:#596B7E;
     flex-direction: column;
   }
   

@@ -3,32 +3,56 @@ import '../styles/visualizer.css'
 import { connect } from 'react-redux'
 
 
-function Visualizer({scale,chord,notes}) {
+function Visualizer({chord,notes}) {
 
     let isMoreThan1 = false;
-    if(chord.length > 1){
-        isMoreThan1 = true;
-        console.log(`${chord[0]} - ${chord[1]}`);
-        console.log(isMoreThan1);
+    let isNotEmpty = false;
+
+
+    if(chord.length === 0){
+        isNotEmpty = false;
+       
     }else{
+        isNotEmpty = true;
         console.log(chord)
     }
 
+    if(chord.length > 1){
+        isMoreThan1 = true;
+        console.log(`${chord[0]} - ${chord[1]}`);
+
+    }else{
+       
+    }
+
+
     return (
-        isMoreThan1 ? (
-        <div className="visualizer-container">
-            <div className="chord-display-container">
-                    <h1> {chord[0]} </h1>
-                
+        isNotEmpty ? (
+            isMoreThan1 ? (
+            <div className="visualizer-container">
+                <div className="chord-display-container">
+                    {chord.map((not,i) =>
+                       <p key={i} id="text"> {not} </p>
+                    )}
+ 
+                </div>
             </div>
-        </div>
-        ): (
-        <div className="visualizer-container">
-            <div className="chord-display-container">
-                    <h1> {chord} </h1>
-            
+            ): (
+            <div className="visualizer-container">
+                <div className="chord-display-container">
+                    <h1 id="text"> {chord} </h1>
+                </div>
             </div>
-        </div>
+            )
+        ) : (
+            <div className="visualizer-container">
+                <div className="note-display-container">
+                    {notes.map((not,i) =>
+                        <p key={i} id="note-text"> {not} </p>
+                    )}
+
+                </div>
+            </div>
         )
     )
 }

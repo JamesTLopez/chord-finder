@@ -12,18 +12,11 @@ import { UPDATE_CHORD } from '../store/actions/types'
 function Keys(props) {
     
     let octaveController = props.octaveM;
-    let pianoKeys = ["C","Db","D","Eb","E","F","Gb","G","Ab","A","Bb","B"];
+    let pianoKeys = ["C","Db","D","Eb","E","F","Gb","G","Ab","A","Bb","B","C","Db","D","Eb","E"];
     let allowRepeat = true;
-    const keyboard = "awsedftgyhujk";
+    const keyboard = "awsedftgyhujkolp;";
     
     let [keyBuffer,setBuffer] = useState(props.notes);
-
-
-
-    useEffect(() => {
-        let octaveController = props.octaveM;
-        console.log(octaveController)
-    },[props.octaveM]);
 
   
     
@@ -52,6 +45,7 @@ function Keys(props) {
         let st = keyboard.indexOf(e.key);
         if(st !== -1){
             if(st === 12){
+                
                 let note = "C" + (octaveController[0] + 1);
                 playC(note);
                 keyBuffer.push(pianoKeys[st]);
@@ -59,6 +53,7 @@ function Keys(props) {
                 return;
             }
             let note = pianoKeys[st] + octaveController[0];
+    
             playC(note);
             keyBuffer.push(pianoKeys[st]);
             props.updateChord(keyBuffer);
@@ -68,7 +63,7 @@ function Keys(props) {
         else{
             console.log('wrong');
         }
-        console.log(keyBuffer)
+
         
     }
 

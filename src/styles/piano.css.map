@@ -1,8 +1,9 @@
 {
     "version": 3,
-    "mappings": "AAAA,oBAAoB;AAElB,AAAA,UAAU,CAAA;EACR,UAAU,EAAE,KAAK;EACjB,OAAO,EAAE,IAAI;EACb,gBAAgB,EAAC,OAAO;EACxB,cAAc,EAAE,MAAM;CACvB;;AAGD,AAAA,qBAAqB,CAAA;EACnB,gBAAgB,EAAE,OAAO;CAC1B",
+    "mappings": "AAAA,oBAAoB;AAElB,AAAA,UAAU,CAAA;EACR,UAAU,EAAE,KAAK;EACjB,MAAM,EAAE,KAAK;EACb,KAAK,EAAE,IAAI;EACX,OAAO,EAAE,IAAI;EACb,gBAAgB,EAAC,OAAO;EACxB,cAAc,EAAE,MAAM;CACvB;;AAGD,AAAA,qBAAqB,CAAA;EACnB,gBAAgB,EAAE,OAAO;CAC1B",
     "sources": [
-        "piano.scss"
+        "piano.scss",
+        "variables/_variables.scss"
     ],
     "names": [],
     "file": "piano.css"

@@ -62,7 +62,8 @@ export default (state = initState, action) =>{
            
             const notes = action.payload;
             const chord = Chord.detect(action.payload);
-            console.log(chord);
+            console.log(notes);
+            // console.log(chord);
      
             return{
                 ...state,

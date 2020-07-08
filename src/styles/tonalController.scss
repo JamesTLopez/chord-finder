@@ -1,9 +1,13 @@
-$label-color : white;
+@import './variables/variables';
+
 
 .tonal-controller{
     background-color: #262525;
     display: flex;
     flex-direction: row;
+    height: 100%;
+    width: 100%;
+    box-shadow: 0px -1px 6px;
 }
 
 .tonal-main-container{
@@ -13,9 +17,10 @@ $label-color : white;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    // border-color: red;
-    // border-style: dashed;
-    
+    background-color: $tonal-main-controller;
+    border-style: solid;
+    border: 1px;
+    border-color: black;    
 }
 
 .Key-controller{
@@ -23,11 +28,11 @@ $label-color : white;
 }
 
 .chordDisplay-main-container{
-    border-style: dashed;
     flex:3;
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color:$tonal-controller-color;
  
 }
 
