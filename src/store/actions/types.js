@@ -1,5 +1,7 @@
 export const UPDATE_KEY = 'UPDATE_KEY';
+export const UPDATE_KEY_CHORD = 'UPDATE_KEY_CHORD';
 export const UPDATE_SCALE = 'UPDATE_SCALE';
 export const UPDATE_OCTAVE = 'UPDATE_OCTAVE';
 export const UPDATE_CHORD = 'UPDATE_CHORD';
-export const UPDATE_SCALE_TYPE = 'UPDATE_SCALE_TYPE'
+export const UPDATE_SCALE_TYPE = 'UPDATE_SCALE_TYPE';
+export const PLAY_NOTE = 'PLAY_NOTE';
