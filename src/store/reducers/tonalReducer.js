@@ -23,6 +23,7 @@ const initState = {
     octaveM:[2,3,4],
     chord:[],
     notes:[],
+    pressedKey:[false,false,false,false,false,false,false,false,false,false,false,false,false],
     SoundEngine:SoundEngine
 };
 
@@ -96,22 +97,20 @@ export default (state = initState, action) =>{
             for(let i = 24; i<=96; i++){
                 state.SoundEngine['_sprite'][i] = [tIndex,noteLength];
                 tIndex += noteLength;
- 
-            }
+             }
 
             if(Array.isArray(playedNotes)){
                 playedNotes.forEach(element => {
                     let midiInfo = Note.midi(element + state.octaveM[1]);
-                    console.log(element);
                     state.SoundEngine.play(midiInfo.toString());
                 });
-                return{...state};
+                let notes = playedNotes;
+                let chord = Chord.detect(playedNotes);
+                return{...state,chord,
+                    notes};
             }
-
-           
             state.SoundEngine.play(midiInfo.toString());
             return {...state}; 
-            
         default:
             return state;
     }

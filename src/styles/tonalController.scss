@@ -35,6 +35,20 @@
     background-color:$tonal-controller-color;
  
 }
+#button{
+    display: flex;
+    padding: 10px 22px;
+    margin: 4px 2px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #41556A;
+    border: none;
+    color: white;
+
+    cursor: pointer;
+}
+
+
 
 #Labels{
     color: $label-color;

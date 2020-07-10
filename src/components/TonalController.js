@@ -11,7 +11,7 @@ import { Key , Chord} from "@tonaljs/tonal";
 
 
 function TonalController(props) {
-    const Notes = ['C','C#/Db','D','D#/Eb','E','F','F#/Gb','G','G#/Ab','A','A#/Bb','B'];
+    const Notes = ['C','Db','D','Eb','E','F','Gb','G','Ab','A','Bb','B'];
     const Scale = ["Major","Minor"];
     const Octaves = [1,2,3,4,5];
 
@@ -75,7 +75,7 @@ function TonalController(props) {
             </div>
             <div className="chordDisplay-main-container">
                     {props.keyChords.map((chord,i) => 
-                        <button key={i} value={chord} onClick={(e) => playChord(e.target.value)}> {chord} </button>
+                        <button key={i} id="button" value={chord}  onClick={(e) => playChord(e.target.value)}> {chord} </button>
                     )}
             </div>
         </div>

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import White from "../images/Whitekey.png"
 import Black from "../images/blackkey.png"
 import '../styles/keys.css'
-import { UPDATE_CHORD, PLAY_NOTE } from '../store/actions/types'
+import { UPDATE_CHORD, PLAY_NOTE ,KEY_UP , KEY_DOWN} from '../store/actions/types'
 
 
 
@@ -11,65 +11,17 @@ import { UPDATE_CHORD, PLAY_NOTE } from '../store/actions/types'
 function Keys(props) {
     
     let octaveController = props.octaveM;
-    let pianoKeys = ["C","Db","D","Eb","E","F","Gb","G","Ab","A","Bb","B","C","Db","D","Eb","E"];
-    let allowRepeat = true;
-    const keyboard = "awsedftgyhujkolp;";
-    let [keyBuffer,setBuffer] = useState(props.notes);
-    let [pressedKey,setPressedKey] = useState([false,false,false,false,false,false,false,false,false,false,false,false,false]);
+
+    let [pressedKey] = useState(props.pressedKey);
 
     
     let playN = (e) => {
         props.playNote(e);     
     }
 
-    let keyDown = (e) =>{
-        //Prevents repeat of multiple notes
-        if(e.repeat !== undefined){
-            allowRepeat = !e.repeat;
-        }
-        if(!allowRepeat) return;
-        allowRepeat = false;
 
-        let st = keyboard.indexOf(e.key);
-        if(st !== -1){
-            if(st >= 12){
-                
-                let note = pianoKeys[st] + (octaveController[1] + 1);
-                pressedKey[st] = true;
-                setPressedKey(pressedKey);
-                playN(note);
-                keyBuffer.push(pianoKeys[st]);
-                props.updateChord(keyBuffer);  
-                return;
-            }
-            
-            let note = pianoKeys[st] + octaveController[1];
-            pressedKey[st] = true;
-            setPressedKey(pressedKey);
-            playN(note);
-            keyBuffer.push(pianoKeys[st]);
-            props.updateChord(keyBuffer);
-        
-    
-        }
-        else{
-            console.log('wrong');
-        }
-    }
-
-    
-
-    let keyUp = (e) =>{
-        let st = keyboard.indexOf(e.key);
-        let note  = pianoKeys[st];
-        pressedKey[st] = false;
-        setPressedKey(pressedKey);
-        setBuffer(keyBuffer.filter(not => not !== note));
-    }
-
-    
     return (
-        <div className="playArea" onKeyDown={(e)=>keyDown(e)} onKeyUp={(e)=>keyUp(e)} tabIndex="0">
+        <div className="playArea">
             <div className="keyboard-container">
                
                 <div className="Keys">
@@ -202,12 +154,15 @@ const mapStateToProps = ({tonalState}) => ({
     octaveM:tonalState.octaveM,
     chord:tonalState.chord,
     notes:tonalState.notes,
-    isKeyPressed:tonalState.isKeyPressed
+    pressedKey:tonalState.pressedKey
 })
 
 const mapDispatchToProps = (dispatch) => ({
     updateChord:(buffer) => dispatch({type:UPDATE_CHORD,payload:buffer}),
-    playNote:(e) => dispatch({type:PLAY_NOTE,payload:e})
+    playNote:(e) => dispatch({type:PLAY_NOTE,payload:e}),
+    keyUp:(e) => dispatch({type:KEY_UP,payload:e}),
+    keyDown:(e) => dispatch({type:KEY_DOWN,payload:e})
+
 })
 
 
