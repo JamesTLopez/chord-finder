@@ -64,8 +64,13 @@ function Piano(props) {
     return (
         <div className="container" onKeyDown={(e)=>keyDown(e)} onKeyUp={(e)=>keyUp(e)} tabIndex="0">
             <header>Chord Finder</header>
-            <Visualizer/>
-            <Keyboard />
+            <div className="content-container">
+                <Visualizer/>
+                <Keyboard />
+                <div>
+                    
+                </div>
+            </div>
             <TonalController/>
         </div> 
     )

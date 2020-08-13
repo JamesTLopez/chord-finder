@@ -47,38 +47,39 @@ function TonalController(props) {
     }
 
     return (
-        
-        <div className="tonal-controller">
-            <div className="tonal-main-container">
-                <div className="Key-controller">
-                <label id="Labels"> Key:</label>
-                    <select id="form-control" onChange={handleKeyChange} value={props.keys}>
-                        {Notes.map((not,i)=>
-                            <option key={i} value={not}>{not}</option>
-                        )}
-                    </select>
-                    <label id="Labels"> Scale:</label>
-                    <select onChange={handleScaleChange} value={props.scaleType}>
-                        {Scale.map((scal,i) =>
-                            <option key={i} value={scal}>{scal}</option>
-                        )}
-                    </select>
+        <footer>
+            <div className="tonal-controller">
+                <div className="tonal-main-container">
+                    <div className="Key-controller">
+                    <label id="Labels"> Key:</label>
+                        <select id="form-control" onChange={handleKeyChange} value={props.keys}>
+                            {Notes.map((not,i)=>
+                                <option key={i} value={not}>{not}</option>
+                            )}
+                        </select>
+                        <label id="Labels"> Scale:</label>
+                        <select onChange={handleScaleChange} value={props.scaleType}>
+                            {Scale.map((scal,i) =>
+                                <option key={i} value={scal}>{scal}</option>
+                            )}
+                        </select>
+                    </div>
+                    <div className="Octive-controller">
+                        <label id="Labels"> Octive:</label>
+                        <select onChange={handleOctaveChange} value={props.octave}>
+                            {Octaves.map((oct,i) =>
+                                <option key={i} value={oct}>{oct}</option>
+                            )}
+                        </select>
+                    </div>
                 </div>
-                <div className="Octive-controller">
-                    <label id="Labels"> Octive:</label>
-                    <select onChange={handleOctaveChange} value={props.octave}>
-                        {Octaves.map((oct,i) =>
-                            <option key={i} value={oct}>{oct}</option>
+                <div className="chordDisplay-main-container">
+                        {props.keyChords.map((chord,i) => 
+                            <button key={i} id="button" value={chord}  onClick={(e) => playChord(e.target.value)}> {chord} </button>
                         )}
-                    </select>
                 </div>
             </div>
-            <div className="chordDisplay-main-container">
-                    {props.keyChords.map((chord,i) => 
-                        <button key={i} id="button" value={chord}  onClick={(e) => playChord(e.target.value)}> {chord} </button>
-                    )}
-            </div>
-        </div>
+        </footer>
     )
 }
 
