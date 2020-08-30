@@ -1,8 +1,11 @@
 .playArea{
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   flex-flow: column;
   align-items: center;
+  
+  height: 70%;
+  background-color:#4a5d72;
 
 }
 
@@ -10,6 +13,7 @@
 .keyboard-container{
   display: flex;
   flex-direction: row;
+
   
 }
 .Keys{
