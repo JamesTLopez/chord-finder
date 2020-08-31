@@ -35,13 +35,37 @@
 }
 
 .white-key {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-item-align: center;
+      align-self: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   z-index: 1;
 }
 
+.white-key label {
+  position: absolute;
+  bottom: 20%;
+  color: white;
+}
+
 .black-key {
+  position: relative;
   z-index: 2;
   margin-left: -10px;
   margin-right: -10px;
+}
+
+.black-key label {
+  position: absolute;
+  left: 4px;
+  top: 40%;
+  font-size: 12px;
+  color: white;
 }
 
 #pressedKey {
