@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/chord-finder/static/css/main.a043cc28.chunk.css",
+    "main.js": "/chord-finder/static/js/main.70de8c70.chunk.js",
+    "main.js.map": "/chord-finder/static/js/main.70de8c70.chunk.js.map",
+    "runtime-main.js": "/chord-finder/static/js/runtime-main.55c05fc1.js",
+    "runtime-main.js.map": "/chord-finder/static/js/runtime-main.55c05fc1.js.map",
+    "static/js/2.bbd0853c.chunk.js": "/chord-finder/static/js/2.bbd0853c.chunk.js",
+    "static/js/2.bbd0853c.chunk.js.map": "/chord-finder/static/js/2.bbd0853c.chunk.js.map",
+    "index.html": "/chord-finder/index.html",
+    "precache-manifest.a4c954bf5786f46f8bb7bf769e45f9cd.js": "/chord-finder/precache-manifest.a4c954bf5786f46f8bb7bf769e45f9cd.js",
+    "service-worker.js": "/chord-finder/service-worker.js",
+    "static/css/main.a043cc28.chunk.css.map": "/chord-finder/static/css/main.a043cc28.chunk.css.map",
+    "static/js/2.bbd0853c.chunk.js.LICENSE.txt": "/chord-finder/static/js/2.bbd0853c.chunk.js.LICENSE.txt",
+    "static/media/C.ogg": "/chord-finder/static/media/C.2d5564ff.ogg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.55c05fc1.js",
+    "static/js/2.bbd0853c.chunk.js",
+    "static/css/main.a043cc28.chunk.css",
+    "static/js/main.70de8c70.chunk.js"
+  ]
+}
