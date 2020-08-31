@@ -19,7 +19,7 @@
     "redux-thunk": "^2.3.0",
     "sass": "^1.26.8"
   },
-  "homepage":"https://jamestlopez.github.io/chord-finder/",
+  "homepage":"https://jamestlopez.github.io/chord-finder",
   "scripts": {
     "predeploy":"npm run build",
     "deploy":"gh-pages -d build",
