@@ -12,7 +12,7 @@ function App() {
         <Router> 
           <div className="App">
               <Switch>
-                  <Route exact path="/" component={Piano}></Route>
+                  <Route exact path="/chord-finder" component={Piano}></Route>
               </Switch>
           </div>
       </Router>
