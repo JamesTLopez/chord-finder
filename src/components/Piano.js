@@ -15,7 +15,7 @@ function Piano(props) {
     const keyboard = "awsedftgyhujkolp;";
     let [keyBuffer,setBuffer] = useState(props.notes);
     let [pressedKey,setPressedKey] = useState(props.pressedKey);
-
+ 
 
     let playN = (e) => {
         props.playNote(e);     
@@ -29,7 +29,7 @@ function Piano(props) {
         if(!allowRepeat) return;
 
         allowRepeat = false;
-        let st = keyboard.indexOf(e.key);
+        let st = keyboard.indexOf(e.key.toLowerCase());
         if(st !== -1){
             if(st >= 12){ 
                 let note = pianoKeys[st] + (octaveController[1] + 1);
@@ -67,9 +67,7 @@ function Piano(props) {
             <div className="content-container">
                 <Visualizer/>
                 <Keyboard />
-                <div>
-                    
-                </div>
+           
             </div>
             <TonalController/>
         </div> 

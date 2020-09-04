@@ -11,6 +11,7 @@ function App() {
     <Provider store={store}>
         <Router> 
           <div className="App">
+            <div></div>
               <Switch>
                   <Route exact path="/chord-finder" component={Piano}></Route>
               </Switch>
